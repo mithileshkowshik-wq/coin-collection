@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(npm create *)",
+      "Bash(rm -f favicon.svg icons.svg)",
+      "Bash(qlmanage -t -s 512 -o . icon.svg)",
+      "Bash(mv icon.svg.png pwa-512.png)",
+      "Bash(sips -z 192 192 pwa-512.png --out pwa-192.png)",
+      "Bash(sips -z 180 180 pwa-512.png --out apple-touch-icon.png)",
+      "Bash(npm run *)",
+      "Bash(npm install *)",
+      "Bash(mkdir -p /Users/mithileshk/Desktop/Coin-Collection/docs && cp /Users/mithileshk/Downloads/coin-collection-app-handoff.md /Users/mithileshk/Desktop/Coin-Collection/docs/HANDOFF.md)",
+      "Bash(npm view *)",
+      "Bash(npx oxlint *)",
+      "Bash(kill 66255)",
+      "Bash(kill 64061)",
+      "Bash(gh auth *)",
+      "Bash(brew --version)",
+      "Bash(brew install *)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)"
+    ]
+  }
+}
