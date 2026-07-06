@@ -2,6 +2,8 @@
 
 A personal coin-collection cataloging PWA — works on phone and laptop from the same data, installable to a phone home screen. Built with React + Vite + Tailwind, backed by Supabase (Postgres + Auth + Storage).
 
+**Live:** <https://coin-collection-seven.vercel.app> (private — sign-in required; see [One-time setup](#one-time-setup) to create a user)
+
 Full project context (goals, decisions, API caveats) lives in [docs/HANDOFF.md](docs/HANDOFF.md).
 
 ## Status
@@ -30,13 +32,15 @@ npm run dev
 
 If Supabase isn't configured yet, the app shows a setup checklist instead of crashing.
 
-Note: Vite is pinned to v6 because this machine runs Node 20.17 (Vite 7+ needs Node ≥ 20.19). Fine to bump after upgrading Node.
+Note: Vite is pinned to v6 and oxlint to 1.16 because this machine runs Node 20.17 (their newer major versions need Node ≥ 20.19). Fine to bump both after upgrading Node.
 
 ## Deploy (Vercel)
 
-1. Push this repo to GitHub and import it in Vercel.
-2. Framework preset: Vite. Add the two `VITE_SUPABASE_*` env vars.
-3. Add a rewrite so client-side routes work on refresh — `vercel.json` is already included.
+Already deployed and live at the URL above, with GitHub auto-deploy wired up — every push to `main` triggers a new production build. To reproduce this setup elsewhere (e.g. a different Vercel account):
+
+1. Push this repo to GitHub and import it in Vercel (or `vercel link` + `vercel git connect <repo-url>`).
+2. Framework preset: Vite. Add the two `VITE_SUPABASE_*` env vars for Production, Preview, and Development.
+3. The SPA rewrite so client-side routes survive a refresh is already in `vercel.json`.
 4. Open the deployed URL on the phone → Share → Add to Home Screen. It installs as an app (PWA manifest + service worker are built in).
 
 ## For Phase 3 (do this early)
