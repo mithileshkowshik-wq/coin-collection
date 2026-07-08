@@ -55,8 +55,11 @@ export default function CoinList() {
   }
 
   const totalQuantity = coins.reduce((sum, c) => sum + (c.quantity || 1), 0)
-  const totalValue = coins.reduce((sum, c) => sum + (c.estimated_value ?? 0) * (c.quantity || 1), 0)
   const mainCurrency = coins.find((c) => c.estimated_value != null)?.value_currency ?? 'USD'
+  // Only sum coins valued in the same currency as the total — mixing currencies would produce a meaningless number.
+  const totalValue = coins
+    .filter((c) => c.value_currency === mainCurrency)
+    .reduce((sum, c) => sum + (c.estimated_value ?? 0) * (c.quantity || 1), 0)
 
   return (
     <div>

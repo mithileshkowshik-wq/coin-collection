@@ -13,9 +13,11 @@ export default function CoinDetail() {
 
   useEffect(() => {
     if (!id) return
+    let cancelled = false
     getCoin(id)
-      .then(setCoin)
-      .catch((e: Error) => setError(e.message))
+      .then((c) => { if (!cancelled) setCoin(c) })
+      .catch((e: Error) => { if (!cancelled) setError(e.message) })
+    return () => { cancelled = true }
   }, [id])
 
   const onDelete = async () => {

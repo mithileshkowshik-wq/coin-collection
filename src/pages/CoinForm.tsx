@@ -80,8 +80,10 @@ export default function CoinForm() {
 
   useEffect(() => {
     if (!id) return
+    let cancelled = false
     getCoin(id)
       .then((coin) => {
+        if (cancelled) return
         setNumistaId(coin.numista_id)
         setForm({
           country: coin.country,
@@ -104,9 +106,11 @@ export default function CoinForm() {
         setLoading(false)
       })
       .catch((e: Error) => {
+        if (cancelled) return
         setError(e.message)
         setLoading(false)
       })
+    return () => { cancelled = true }
   }, [id])
 
   const set = (key: keyof FormState) => (e: { target: { value: string } }) =>
